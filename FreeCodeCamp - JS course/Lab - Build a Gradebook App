@@ -1,0 +1,40 @@
+//const getAverage = (targetArray) => eval(targetArray.join("+"))/targetArray.length;
+
+function getAverage(targetArray) {
+    let totalOfNumbers = 0;
+    for (iNumber of targetArray) {
+        totalOfNumbers += iNumber;
+    }
+    let average = totalOfNumbers/targetArray.length;
+    return average;
+}
+
+function getGrade(targetMark) {
+    if (targetMark === 100) {return "A+"}
+    else if ((90 <= Math.round(targetMark)) && (Math.round(targetMark) <= 99)) {return "A"}
+    else if ((80 <= Math.round(targetMark)) && (Math.round(targetMark) <= 89)) {return "B"}
+    else if ((70 <= Math.round(targetMark)) && (Math.round(targetMark) <= 79)) {return "C"}
+    else if ((60 <= Math.round(targetMark)) && (Math.round(targetMark) <= 69)) {return "D"}
+    else if ((0 <= Math.round(targetMark)) && (Math.round(targetMark) <= 59)) {return "F"}
+    else {return "Something Went wrong! Check your input"}
+};
+
+function hasPassingGrade(targetMark) {
+    if ((getGrade(targetMark) === "F") || (getGrade(targetMark) === "Something Went wrong! Check your input")) {
+        return false;
+    } else {
+        return true;
+    };
+};
+
+function studentMsg(targetArray,score) {
+    let averageMark = Number(getAverage(targetArray));
+    if (hasPassingGrade(score) === true) {
+        return `Class average: ${averageMark}. Your grade: ${getGrade(score)}. You passed the course.`;
+    } else {
+        return `Class average: ${averageMark}. Your grade: ${getGrade(score)}. You failed the course.`;
+    };
+}
+
+console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
+console.log(studentMsg([56, 23, 89, 42, 75, 11, 68, 34, 91, 19], 100));
